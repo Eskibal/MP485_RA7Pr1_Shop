@@ -49,7 +49,7 @@ public class Client extends Person implements Payable {
     
     @Override
     public boolean pay(Amount amount) {
-        if (balance.getValue() >= amount.getValue()) {
+        if (balance.getValue() >= amount.getValue()) { // if balance is bigger than amount, subtracts balance
             balance.subtract(balance);
             return true;
         } else {

@@ -104,10 +104,12 @@ public class Shop {
         addProduct(new Product("Hamburguesa", 30.00, true, 30));
         addProduct(new Product("Fresa", 5.00, true, 20));
     }
-    
+    /**
+     * employee login
+     */
     public void initSession() {
         Scanner scanner = new Scanner(System.in);
-        boolean logged = false;
+        boolean logged = false; // employee verification
                 
         while (!logged) {
             System.out.print("Introduzca el numero de empleado: ");
@@ -119,7 +121,7 @@ public class Shop {
             Employee employee = new Employee("Empleado");
             logged = employee.login(id, pw);
             
-            if (!logged) {
+            if (!logged) { // if data is incorrect, asks again
                 System.out.println("Los datos son incorrectos. Intente de nuevo");
             } else {
                 System.out.println("Datos ingresados correctos. Bienvenido");
@@ -214,10 +216,10 @@ public class Shop {
      * make a sale of products to a client
      */
     public void sale() {
-        // ask for client name
         Scanner sc = new Scanner(System.in);
         Client client = new Client("Client");
         
+        // ask for client name
         System.out.println("Realizar venta, escribir nombre cliente");
         String clientName = sc.nextLine();
 
@@ -252,7 +254,7 @@ public class Shop {
             }
         }
         
-        if (client.pay(totalAmount)) {
+        if (client.pay(totalAmount)) { // if client pays the exact amount, adds a sale
             Sale sale = new Sale (client, purchaseProducts, totalAmount);
             sales.add(sale);
 
@@ -284,6 +286,9 @@ public class Shop {
         }
     }
     
+    /**
+     * show the total amount of all sales
+     */    
     private void showTotalAmountSales() {
         System.out.println("Importe total de todas las ventas:");
         Amount totalAmount = new Amount(0.0);
@@ -294,6 +299,9 @@ public class Shop {
         System.out.println(totalAmount);
     }
     
+    /**
+     * remove a product from inventory
+     */
     public void removeProduct() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nombre: ");
@@ -316,10 +324,6 @@ public class Shop {
      * @param product
      */
     public void addProduct(Product product) {
-        /*if (isInventoryFull()) {
-            System.out.println("No se pueden anadir mas productos, se ha alcanzado el maximo de " + inventory.length);
-            return;
-        }*/
         inventory.add(product);
         numberProducts++;
     }
